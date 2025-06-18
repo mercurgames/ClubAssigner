@@ -14,5 +14,5 @@ deploymentTarget = "autoscale"
 ignorePorts = false
 
 [[ports]]
-localPort = 3000
-externalPort = 80
+localPort = 3001
+externalPort = 81
