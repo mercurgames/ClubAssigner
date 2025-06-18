@@ -37,6 +37,8 @@ const client = new Client({
 
 client.commands = new Collection();
 
+const guildId = "1373365525530280076";
+
 client.once("ready", async () => {
   console.log(`✅ Eingeloggt als ${client.user.tag}`);
 
@@ -63,7 +65,7 @@ client.once("ready", async () => {
   try {
     console.log("📨 Registriere Slash-Commands...");
     console.time("Slash-Commands Registrierung");
-    await rest.put(Routes.applicationCommands(client.user.id), { body: commands });
+    await rest.put(Routes.applicationGuildCommands(client.user.id, guildId), { body: commands });
     console.timeEnd("Slash-Commands Registrierung");
 
     console.log("✅ Slash-Commands registriert!");
