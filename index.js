@@ -104,7 +104,7 @@ client.on(Events.InteractionCreate, async interaction => {
         }
     }
     //await interaction.editReply("Fertig!");
-  }
+  
   
 });
 
