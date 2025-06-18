@@ -64,7 +64,7 @@ client.once("ready", async () => {
 
   try {
     console.log("🗑️ Lösche alte Slash-Commands...");
-    await rest.put(Routes.applicationGuildCommands(client.user.id, guildId), { body: [] });
+    await rest.put(Routes.applicationCommands(client.user.id), { body: [] });
 
     console.log("📡 Registriere neue Slash-Commands...");
     console.time("Slash-Commands Registrierung");
