@@ -63,15 +63,18 @@ client.once("ready", async () => {
   const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
   try {
-    console.log("📨 Registriere Slash-Commands...");
+    console.log("🗑️ Lösche alte Slash-Commands...");
+    await rest.put(Routes.applicationGuildCommands(client.user.id, guildId), { body: [] });
+
+    console.log("📡 Registriere neue Slash-Commands...");
     console.time("Slash-Commands Registrierung");
     await rest.put(Routes.applicationGuildCommands(client.user.id, guildId), { body: commands });
     console.timeEnd("Slash-Commands Registrierung");
-
     console.log("✅ Slash-Commands registriert!");
   } catch (error) {
     console.error(`❌ Fehler beim Registrieren der Slash-Commands:`, error);
-  }
+}
+
 });
 
 
