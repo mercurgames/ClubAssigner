@@ -46,6 +46,15 @@ client.once("ready", async () => {
       .setName("ping")
       .setDescription("Zeigt Pong!"),
 
+    new SlashCommandBuilder()
+      .setName("assign")
+      .setDescription("Gib den Code ein, um mit deinem Club zu chatten!")
+      .addStringOption(option =>
+        option
+          .setName("code")
+          .setDescription("Der Beitrittscode hat jemand im Club versendet")
+          .setRequired(true)
+      ),
     
   ].map(cmd => cmd.toJSON());
 
@@ -75,6 +84,27 @@ client.on(Events.InteractionCreate, async interaction => {
     await interaction.editReply("Pong!");
   }
 
+  if (commandName === "assign") {
+    await interaction.deferReply({ ephemeral: true });
+    const code = interaction.options.getString("code");
+        if (code === "kjcfhbgk") {
+            const roleId = "1384608471772696676"; // ID der Rolle, die vergeben werden soll
+            const role = interaction.guild.roles.cache.get(roleId);
+            const member = interaction.member;
+
+            if (!role) {
+                return interaction.editReply("❌ Die Rolle wurde nicht gefunden.");
+            }
+
+            // Rolle dem Nutzer hinzufügen
+            await member.roles.add(role);
+            await interaction.editReply(`✅ Du hast erfolgreich die Rolle **${role.name}** erhalten und bist im Club **${role.name}**!`);
+        } else {
+            await interaction.editReply("❌ Ungültiger Code. Bitte versuche es erneut.");
+        }
+    }
+    //await interaction.editReply("Fertig!");
+  }
   
 });
 
