@@ -103,7 +103,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
             // Rolle dem Nutzer hinzufügen
             await member.roles.add(role);
-            await interaction.editReply(`✅ Du hast erfolgreich die Rolle **${role.name}** erhalten und bist im Club **${role.name}**!`);
+            await interaction.editReply(`✅ Du hast erfolgreich die Rolle **${role.name}** erhalten und bist im Club **${role.name}**! Scroll runter`);
         } else {
             await interaction.editReply("❌ Ungültiger Code. Bitte versuche es erneut.");
         }
